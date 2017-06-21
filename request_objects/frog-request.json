@@ -1,0 +1,25 @@
+{
+  "from": 0,
+  "size": 10,
+  "body": {
+    "sort": {
+      "_score": {
+        "order": "desc"
+      }
+    },
+    "fields": [
+      "creator",
+      "description",
+      "subject",
+      "title"
+    ],
+    "query": {
+      "query_string": {
+        "query": "frogs"
+      }
+    }
+  },
+  "index": "oc",
+  "type": "object",
+  "headers": ""
+}

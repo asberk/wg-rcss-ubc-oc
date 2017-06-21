@@ -5,23 +5,26 @@ import matplotlib.ticker as plticker
 apiKey = 'ac40e6c2cb345593ed1691e0a8b601bba398e42d85f81f893c5ab709cec63c6c'
 searchUrl ='https://oc-index.library.ubc.ca/search?api_key='
 
-with open('/Users/schuyler/dev/py_oc-api_seminar/request_objects/aggregate-date-subj-creator.json') as json_data:
+with open('./request_objects/aggregate-date-subj-creator.json') as json_data:
     queryObject = json.load(json_data)
 
-
-print('QUERY OBJECT')
-print(json.dumps(queryObject, indent=4))
+doPrints = False
+if doPrints:
+    print('QUERY OBJECT')
+    print(json.dumps(queryObject, indent=4))
 
 search = requests.post(searchUrl + apiKey, json=queryObject)
 
-print('RESPONSE')
-# print(json.dumps(search.json(), indent=4))
+if doPrints:
+    print('RESPONSE')
+    # print(json.dumps(search.json(), indent=4))
 
 response = search.json()
 
 date_hist = response['data']['data']['aggregations']['date_hist']['buckets']
 
-print(json.dumps(date_hist, indent=4))
+if doPrints:
+    print(json.dumps(date_hist, indent=4))
 
 N = len(date_hist)
 
